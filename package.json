@@ -1,0 +1,68 @@
+{
+  "name": "famous-framework",
+  "version": "0.9.0",
+  "description": "A modern take on building reusable components and maintainable applications",
+  "keywords": [
+    "famous",
+    "framework"
+  ],
+  "license": "MIT",
+  "repository": "Famous/framework",
+  "bugs": "https://github.com/Famous/framework/issues",
+  "private": true,
+  "authors": [
+    "Zack Brown <zack@famo.us>",
+    "Matthew Trost <matthew@famo.us>",
+    "Arkady Pevzner <arkady@famo.us>",
+    "Imtiaz Majeed <imtiaz@famo.us>",
+    "Jordan Papaleo <jordan@famo.us>"
+  ],
+  "scripts": {
+    "dev": "npm run watch-runtime & npm run bootstrap",
+    "bootstrap": "rm -rf $PWD/local/workspace/build/v1 && node local/scripts/dev.js local-only-bootstrap --sourceDirectory=$PWD/components --blocksDirectory=$PWD/local/workspace/build --port=1618",
+    "build-runtime": "node local/scripts/build-runtime.js build-runtime",
+    "watch-runtime": "watchify browser/runtime/lib/index.js -t [ envify --FF_ASSET_READ_HOST http://localhost:1618 ] -o local/workspace/build/famous-framework.bundle.js --debug --verbose",
+    "develop-component": "node local/scripts/dev.js develop-component --blocksDirectory=$PWD/local/workspace/build --port=1618",
+    "publish-component": "node local/scripts/dev.js publish-component --blocksDirectory=$PWD/local/workspace/build",
+    "test": "node local/scripts/test.js",
+    "lint": "eslint --ignore-path .eslintignore ."
+  },
+  "dependencies": {
+    "async": "^0.9.0",
+    "babel": "^5.1.13",
+    "chalk": "^1.0.0",
+    "chokidar": "^1.0.1",
+    "clone": "^1.0.2",
+    "commander": "^2.8.1",
+    "escodegen": "^1.6.1",
+    "esprima": "^2.2.0",
+    "estraverse": "^4.1.0",
+    "express": "https://registry.npmjs.org/express/-/express-4.12.4.tgz",
+    "famous": "Famous/engine",
+    "form-data": "matthewtoast/node-form-data#master",
+    "jsdom": "^3.1.2",
+    "less": "^2.5.0",
+    "livereload": "^0.3.7",
+    "lodash": "^3.8.0",
+    "mkdirp": "^0.5.0",
+    "recursive-readdir": "^1.2.1",
+    "request": "^2.55.0",
+    "stylus": "^0.51.1",
+    "traverse": "^0.6.6",
+    "browserify": "^10.1.3",
+    "envify": "^3.4.0",
+    "serve": "^1.4.0",
+    "xhr": "^2.0.1",
+    "node-watch": "^0.3.4",
+    "nodemon": "^1.3.7",
+    "watchify": "^3.2.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^3.1.15",
+    "eslint": "^0.21.2",
+    "jsdoc": "^3.3.0-beta1",
+    "smokestack": "^3.2.2",
+    "tap-closer": "^1.0.0",
+    "tape": "^4.0.0"
+  }
+}
